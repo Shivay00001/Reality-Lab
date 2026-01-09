@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ContentType, AnalysisResult, UploadedFile } from './types';
 import { performForensicAnalysis } from './services/geminiService';
@@ -62,10 +61,44 @@ export default function App() {
           <span className="text-[10px] font-bold tracking-[0.2em] text-blue-400 uppercase">Neural Forensic Attribution v3.1</span>
         </div>
         <h1 className="text-5xl font-bold text-white mb-4 tracking-tight">Reality Lab</h1>
-        <p className="text-zinc-400 max-w-2xl mx-auto text-lg leading-relaxed">
+        <p className="text-zinc-400 max-w-2xl mx-auto text-lg leading-relaxed mb-8">
           Advanced unit for detecting <strong>Full-AI</strong>, <strong>AI-Edited (Semi-AI)</strong>, <strong>Documents</strong>, and <strong>3D Characters</strong>.
         </p>
       </header>
+
+      {!result && (
+        <div className="max-w-3xl mx-auto w-full mb-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+          <div className="bg-[#121214] border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
+            <div className="p-4 border-b border-white/5 flex items-center justify-between bg-zinc-900/40">
+              <div className="flex items-center gap-3">
+                <i className="fa-solid fa-clapperboard text-blue-500 text-xs"></i>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Featured Investigation Case #FB-17J</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span className="text-[9px] font-bold text-emerald-500 uppercase">Active Review</span>
+              </div>
+            </div>
+            <div className="relative pt-[56.25%] bg-black">
+              <iframe 
+                src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F17jE3H7aPw%2F&show_text=0&width=560" 
+                className="absolute inset-0 w-full h-full border-none"
+                style={{ border: 'none', overflow: 'hidden' }} 
+                scrolling="no" 
+                frameBorder="0" 
+                allowFullScreen={true} 
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              ></iframe>
+            </div>
+            <div className="p-4 bg-zinc-900/20">
+              <p className="text-xs text-zinc-500 italic flex items-center gap-2">
+                <i className="fa-solid fa-circle-info"></i>
+                Sample investigation used for benchmarking neural artifacts in multimodal social media streams.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {!result ? (
         <div className="flex-1 flex flex-col max-w-3xl mx-auto w-full">
