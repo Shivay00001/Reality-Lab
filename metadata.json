@@ -1,0 +1,8 @@
+{
+  "name": "Copy of Reality Lab - AI Forensics",
+  "description": "A production-grade AI detection and forensic analysis platform using Gemini 3 for multimodal content verification.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
