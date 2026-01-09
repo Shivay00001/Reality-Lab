@@ -1,4 +1,3 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { ContentType, AnalysisResult, Verdict } from "../types";
 
@@ -18,7 +17,8 @@ export const performForensicAnalysis = async (
   data: string, 
   mimeType?: string
 ): Promise<AnalysisResult> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
+  // Always use process.env.API_KEY directly as per instructions
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
   const systemPrompt = `CORE DIRECTIVE: You are an elite Neural Forensic Auditor at Reality Lab.
 Your analysis must be 100% grounded in technical signal detection. Do not guess. Search for architectural fingerprints.
