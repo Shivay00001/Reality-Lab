@@ -39,3 +39,11 @@ Reality Lab performs a structured audit across modalities:
 
 ## Disclaimer
 This tool provides probabilistic estimates. No AI detector is 100% accurate. Results should be treated as expert-level signals rather than conclusive proof.
+
+
+## Installation
+Follow standard installation steps for this language.
+
+## Usage
+Instructions on how to run the project.
+
