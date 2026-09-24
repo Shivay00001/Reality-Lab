@@ -227,3 +227,29 @@ Distributed under the **VisionQuantech Custom Commercial License** (see `LICENSE
 - **Business / enterprise use:** Requires a separate commercial license — contact **visionquantech@proton.me**.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+---
+
+## 🔧 Wave-1 fix notes (2026-09-24)
+
+- **SECURITY FIX — API key moved server-side.** The Gemini key was baked into the
+  browser bundle via vite's `define` (`process.env.API_KEY`). Now:
+  - New `server/proxy.mjs` (zero-dependency Node server): reads `GEMINI_API_KEY`
+    from the environment, accepts `POST /api/analyze {type, data, mimeType}`,
+    calls the Gemini REST API server-side with the same forensic system prompt /
+    JSON schema / thinking budgets, and returns the `AnalysisResult`. Also serves
+    `GET /api/health` and the built frontend from `dist/` (single-process deploy).
+  - `services/geminiService.ts` no longer imports `@google/genai` and never sees a
+    key — it just `fetch()`es `/api/analyze`.
+  - `vite.config.ts` no longer injects any key; dev mode proxies `/api` to the
+    backend on :8080. `@google/genai` removed from dependencies.
+- **Fixed mounting:** `index.html` was a generic template with no `#root` div and
+  no module script — the React app could never render. Replaced with a proper
+  Vite entry.
+- **Docker:** `CMD ["npm","start"]` now runs the proxy (was broken: no `start`
+  script); `EXPOSE 8080`. Run: `docker run -e GEMINI_API_KEY=... -p 8080:8080 ...`
+- Verified 2026-09-24: `npm run build` passes (33 modules, dist built); `dist`
+  bundle grepped — no `API_KEY` / `generativelanguage` strings in client code;
+  proxy booted and served `/api/health`, honest no-key error on `/api/analyze`,
+  and with a dummy key made a real upstream Gemini call (Google replied
+  "API key not valid", proving the server-side flow). Dev: `npm run proxy`
+  (terminal 1) + `npm run dev` (terminal 2), with `GEMINI_API_KEY` set.
