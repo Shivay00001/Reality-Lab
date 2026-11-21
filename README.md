@@ -2,6 +2,8 @@
 
 # Reality Lab
 
+Built by [VisionQuantech](https://visionquantech.com) — AI agents, apps & tools for small businesses.
+
 **Neural Forensic Attribution Platform** — a multimodal AI-content detection and forensic analysis suite built with React 19, TypeScript, Vite, and Google's Gemini 3 Pro.
 
 ![Language](https://img.shields.io/badge/Language-TypeScript-blue)
